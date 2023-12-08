@@ -1,0 +1,24 @@
+{
+  "name": "clcm3404-lab-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-tanthikun802/CLCM3404-Lab-4.git"
+  },
+  "author": "Sorawat Tanthikun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-tanthikun802/CLCM3404-Lab-4/issues"
+  },
+  "homepage": "https://github.com/s-tanthikun802/CLCM3404-Lab-4#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {}
+}
