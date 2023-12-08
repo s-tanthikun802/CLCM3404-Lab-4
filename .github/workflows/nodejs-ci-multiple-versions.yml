@@ -5,7 +5,7 @@ name: Node.js Build & Test (Multiple Versions)
 
 on:
   push:
-    branches: [ development ]
+    branches: [ main ]
 
 jobs:
   build:
