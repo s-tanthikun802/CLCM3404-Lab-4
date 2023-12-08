@@ -70,3 +70,29 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: |
           docker push stanthikun802/clcm3404-lab-4:latest
+  deploy:
+    name: Deploy to EC2 on master branch push
+    runs-on: ubuntu-latest
+    needs: build_and_push_docker_image
+
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v2
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull stanthikun802/clcm3404-lab-4:latest
+            docker run -d -p 3000:3000 --name clcm3404-lab-4 stanthikun802/clcm3404-lab-4:latest
