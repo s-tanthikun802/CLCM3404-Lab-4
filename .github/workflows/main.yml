@@ -79,7 +79,7 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
 
-      - name: Deploy to Server
+      - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
@@ -95,4 +95,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             docker pull stanthikun802/clcm3404-lab-4:latest
+            docker stop clcm3404-lab-4 && docker rm clcm3404-lab-4
             docker run -d -p 3000:3000 --name clcm3404-lab-4 stanthikun802/clcm3404-lab-4:latest
+            docker rmi stanthikun802/clcm3404-lab-4:latest
